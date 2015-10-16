@@ -22,3 +22,14 @@ def generate_n_validation_data_points(n = 100):
     [(Class1,[x1,y1]),(Class2,[x2,y2]),...,(Classn,[xn,yn])]
     """
     return []
+
+
+def visualize_data(data = None):
+    """
+    Todo. Takes a list of lists. Then maps all of those lists on a 2d plot.
+    Each list contains two different colorings of data.
+    A list of list contains len(list_of_list) * 2 different colorings.
+    Visualization will be usefull in showing step by step by step evolution of isomomorphic transformation.
+    """
+    pass
+
