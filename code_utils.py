@@ -8,7 +8,7 @@ def levenshtein_distance(s, t):
 	l3 = levenshtein_distance(s[1:], t[1:])
 	return 1 + min(l1, l2, l3)
 
-def end_algorithm_is_good_idea(iteration ,userControl = False, time_out= 5000, discrete_timeout = 100):
+def end_algorithm_is_good_idea(iteration  ,userControl = False, time_out= 5000, discrete_timeout_limit = 100):
     # This basically tells us wether or not we want to interrupt the process step by stepr
     # The interrupt stalls the main loop and asks the user for input
     if userControl is True:
@@ -22,7 +22,7 @@ def end_algorithm_is_good_idea(iteration ,userControl = False, time_out= 5000, d
         """
         Todo: Implement Timeout Mechanism. for now we just
         """
-        if iteration > discrete_timeout:
-            return False
-        else:
+        if iteration > discrete_timeout_limit-1:
             return True
+        else:
+            return False
