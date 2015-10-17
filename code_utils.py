@@ -7,3 +7,19 @@ def levenshtein_distance(s, t):
 	l2 = levenshtein_distance(s[1:], t)
 	l3 = levenshtein_distance(s[1:], t[1:])
 	return 1 + min(l1, l2, l3)
+
+def end_algorithm_is_good_idea(userControl = False, time_out= 5000):
+    # This basically tells us wether or not we want to interrupt the process step by stepr
+    # The interrupt stalls the main loop and asks the user for input
+    if userControl is True:
+        line_read = raw_input( "Press <ENTER> to perform and display next iteration. Type \"exit\" to exit this loop and display weights:  ")
+        lev_d = levenshtein_distance(line_read.strip().lower(),"exit" )
+        if lev_d  <=2:
+            return True
+        else:
+            return False
+    else:
+        """
+        Todo: Implement Timeout Mechanism. for now we just
+        """
+        return True
