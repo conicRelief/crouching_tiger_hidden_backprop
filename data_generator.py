@@ -1,3 +1,5 @@
+import itertools
+
 __author__ = 'otto'
 import random
 import  numpy as np
@@ -18,15 +20,8 @@ def squidmoid(inpx,stretch_factor_x = 100.00, stretch_factor_y = 200.00, random_
     return  float(stretch_factor_y/(1 + np.exp(-((inpx-500)/stretch_factor_x)**2))) + plus_or_minus(random_interval_range) + yoffset
 
 def generate_n_training_data_points(y_off, n = 100,):
-    """
-    Todo. Generate n training data points and call it set T
-    Returned values will assume the form:
-    [(Class1,[x1,y1]),(Class2,[x2,y2]),...,(Classn,[xn,yn])]
-    """
-    stx = random.randint(200,300)
-    sty = random.randint(400,600)
-
-    y_offset = random.randint(0,1000)
+    stx = random.randint(200,300) # xStretch
+    sty = random.randint(400,600) # yStretch
     xs =  [random.randint(0,1000) for x in range(n)]
     ys =  [float(squidmoid(z,yoffset = y_off,stretch_factor_y = float(sty),stretch_factor_x= float(stx))) for z in xs]
     return zip(xs, ys)
@@ -52,9 +47,12 @@ def visualize_data(data = None):
     A list of list contains len(list_of_list) * 2 different colorings.
     Visualization will be usefull in showing step by step by step evolution of isomomorphic transformation.
     """
+    colors = itertools.cycle(["r", "b", "g"])
+
     visualize_data.counter += 1
-    x,y = zip(*data)
-    plt.scatter(x,y)
+    for dt in data:
+        x,y = zip(*dt)
+        plt.scatter(x,y,color = colors.next())
     plt.show()
 
 
